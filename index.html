@@ -2656,51 +2656,10 @@
             delete keysPressed[event.key];
         });
 
-        window.addEventListener('touchstart', e => {
-            FLEX_engine = canvas.getBoundingClientRect();
-            XS_engine = e.clientX - FLEX_engine.left;
-            YS_engine = e.clientY - FLEX_engine.top;
-            if(scale == 1){
-                TIP_engine.x = XS_engine*3
-                TIP_engine.y = YS_engine*3
-            }else{
-                TIP_engine.x = XS_engine
-                TIP_engine.y = YS_engine
-            }
-            TIP_engine.body = TIP_engine
-            if(spin1.isPointInside(TIP_engine)){
-                b.spin1()
-            }
-            if(spin2.isPointInside(TIP_engine)){
-                b.spin2()
-            }
-            if(scaler.isPointInside(TIP_engine)){
-                scale*=-1
-            }
-            if(playerID == b.board.turn || playerID == -1){
-                let i = b.check(TIP_engine)
-                console.log(i)
-                if(playerID == -1 && i != -1){
-                    playerID = Math.abs(b.board.turn-1) //b.board.turn
-                }
 
-                if(i != -1){
-                    b.cald = 0
-            let pson = {}
-            pson.tile = i
-            pson.id = Math.abs(playerID-1)
-            pson.guy = 1
-            ws.send(JSON.stringify(pson))
-                }
-            }
 
-            if (goRect.isPointInside(TIP_engine)) {
-                globalRoom = roombox.number
-                startgame = 2
-            }
-            window.addEventListener('pointermove', continued_stimuli);
-        });
         window.addEventListener('pointerdown', e => {
+            e.preventDefault()
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
             YS_engine = e.clientY - FLEX_engine.top;
