@@ -1074,6 +1074,15 @@
             this.cald = 1
         }
 
+        spin1(){
+            
+
+            this.board.spin1()
+        }
+        spin2(){
+            
+            this.board.spin2()
+        }
         check(point, tile = -1) {
 
             let i = -1
@@ -2406,6 +2415,15 @@
 
 
         }
+        spin1(){
+            
+
+            this.rotateZ(-Math.PI/16)
+        }
+        spin2(){
+            
+            this.rotateY(-Math.PI/16)
+        }
         export2() {
             let out = ''
 
@@ -2635,6 +2653,12 @@
             TIP_engine.x = XS_engine
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
+            if(spin1.isPointInside(TIP_engine)){
+                b.spin1()
+            }
+            if(spin2.isPointInside(TIP_engine)){
+                b.spin2()
+            }
             if(playerID == b.board.turn || playerID == -1){
                 let i = b.check(TIP_engine)
                 console.log(i)
@@ -2681,11 +2705,21 @@
     let b = new Pairs()
     let mod = 1
     let restart = new Rectangle(700, 400, 200, 50, "white")
+    let spin1 = new Rectangle(700, 600, 200, 50, "green")
+    let spin2  = new Rectangle(900, 600, 200, 50, "yellow")
     function main() {
         // if(keysPressed['l']){
 
         canvas_context.clearRect(0, 0, canvas.height, canvas.height)  // refreshes the image
         // }
+        spin1.draw()
+        spin2.draw()
+                canvas_context.fillStyle = "black"
+                canvas_context.font = "30px comic sans ms"
+                canvas_context.fillText("spin", spin1.x + 20, spin1.y + 30)
+                canvas_context.fillStyle = "black"
+                canvas_context.font = "30px comic sans ms"
+                canvas_context.fillText("twirl", spin2.x + 20, spin2.y + 30)
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)lovlock
         // game code goes here
         // let dats = data[ind]
