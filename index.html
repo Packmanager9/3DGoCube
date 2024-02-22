@@ -2650,12 +2650,12 @@
             canvas_context.drawImage(canvas2,0,0,canvas.width, canvas.height, 0,0, canvas.width,  canvas.height )
             }
         }, 25)
-        document.addEventListener('keydown', (event) => {
+        window.addEventListener('keydown', (event) => {
             window.focus();
             console.log(event.key)
             keysPressed[event.key] = true;
         });
-        document.addEventListener('keyup', (event) => {
+        window.addEventListener('keyup', (event) => {
             window.focus();
             console.log(event.key)
             delete keysPressed[event.key];
