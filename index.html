@@ -9,6 +9,19 @@
 <canvas hidden id="canvas2" width="1280" height="850"></canvas>
 <script>
 
+        window.addEventListener('keydown', (event) => {
+            window.focus();
+            console.log(event.key)
+            keysPressed[event.key] = true;
+        });
+        window.addEventListener('keyup', (event) => {
+            window.focus();
+            console.log(event.key)
+            delete keysPressed[event.key];
+        });
+
+
+
     let ws
     let HOST = location.origin.replace(/^http/, 'ws')
     ws = new WebSocket(HOST);
@@ -2650,17 +2663,6 @@
             canvas_context.drawImage(canvas2,0,0,canvas.width, canvas.height, 0,0, canvas.width,  canvas.height )
             }
         }, 25)
-        window.addEventListener('keydown', (event) => {
-            window.focus();
-            console.log(event.key)
-            keysPressed[event.key] = true;
-        });
-        window.addEventListener('keyup', (event) => {
-            window.focus();
-            console.log(event.key)
-            delete keysPressed[event.key];
-        });
-
 
 
         window.addEventListener('pointerdown', e => {
