@@ -2651,9 +2651,13 @@
             }
         }, 25)
         document.addEventListener('keydown', (event) => {
+            window.focus();
+            console.log(event.key)
             keysPressed[event.key] = true;
         });
         document.addEventListener('keyup', (event) => {
+            window.focus();
+            console.log(event.key)
             delete keysPressed[event.key];
         });
 
