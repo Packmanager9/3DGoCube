@@ -1137,6 +1137,7 @@
                                 console.log(this.board.turn)
                                 this.board.dots[k].marked = 0
                                 console.log(this.board.dots[k], this.board.turn)
+                                i = -1
                             } else {
                                 this.strings.push(this.export())
                                 this.board.turn++
@@ -1165,6 +1166,7 @@
                                 console.log(this.board.turn)
                                 this.board.dots[k].marked = 0
                                 console.log(this.board.dots[k], this.board.turn)
+                                i = -1
                             } else {
                                 this.strings.push(this.export())
                                 this.board.turn++
@@ -1224,6 +1226,9 @@
                 board3[c][a][b].e = this.board.dots[k].e
                 board3[c][a][b].turned = this.board.dots[k].turned
                 board3[c][a][b].type = this.board.dots[k].turned
+
+
+                
                 board4[a][c][b].value = this.board.dots[k].value
                 board4[a][c][b].t = this.board.dots[k].t
                 board4[a][c][b].k = this.board.dots[k].k
