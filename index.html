@@ -10,12 +10,10 @@
 <script>
 
         window.addEventListener('keydown', (event) => {
-            window.focus();
             console.log(event.key)
             keysPressed[event.key] = true;
         });
         window.addEventListener('keyup', (event) => {
-            window.focus();
             console.log(event.key)
             delete keysPressed[event.key];
         });
@@ -2710,6 +2708,7 @@
                 startgame = 2
             }
             window.addEventListener('pointermove', continued_stimuli);
+            window.focus();
         });
         window.addEventListener('pointerup', e => {
             window.removeEventListener("pointermove", continued_stimuli);
