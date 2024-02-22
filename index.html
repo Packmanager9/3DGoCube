@@ -1303,7 +1303,6 @@
                                     this.board.dots[ot].turned = (arr[r].board[w][m].type)
                                     this.board.dots[ot].marked = 0
                                     this.board.dots[ot].value = .5
-                                    i = -1
                                     // }
                                     let flaggerz = [this.board.dots[ot].t, this.board.dots[ot].k, this.board.dots[ot].e]
                                     // if (flaggerz[0] == flagger[0]) {
@@ -2638,6 +2637,7 @@
             TIP_engine.body = TIP_engine
             if(playerID == b.board.turn || playerID == -1){
                 let i = b.check(TIP_engine)
+                console.log(i)
                 if(playerID == -1 && i != -1){
                     playerID = Math.abs(b.board.turn-1) //b.board.turn
                 }
