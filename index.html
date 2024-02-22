@@ -701,6 +701,7 @@
             this.pressed = 0
         }
         draw() {
+            // console.log(keysPressed)
             if (this.number < 999) {
                 if (keysPressed['1']) {
                     if (this.pressed == 0) {
@@ -2660,6 +2661,7 @@
 
         window.addEventListener('pointerdown', e => {
             e.preventDefault()
+            canvas.focus();
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
             YS_engine = e.clientY - FLEX_engine.top;
