@@ -6,6 +6,7 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <canvas id="canvas" width="1280" height="850"></canvas>
+<canvas hidden id="canvas2" width="1280" height="850"></canvas>
 <script>
 
     let ws
@@ -25,7 +26,9 @@
     }
 
     let setup_canvas = document.getElementById('canvas')
+    let canvas2 = document.getElementById('canvas2')
 
+    let canvas_context2 = canvas2.getContext('2d');
     let canvas
     let canvas_context
     let keysPressed = {}
@@ -2639,6 +2642,12 @@
                     }
                 }
             }
+            if(scale == 1){
+                canvas_context2.clearRect(0,0,canvas.width*.25, canvas.height)
+            canvas_context2.drawImage(canvas,0,0,canvas.width, canvas.height, 0,0, canvas.width*.33,  canvas.height*.33 )
+            canvas_context.clearRect(0,0,canvas.width, canvas.height)
+            canvas_context.drawImage(canvas2,0,0,canvas.width, canvas.height, 0,0, canvas.width,  canvas.height )
+            }
         }, 25)
         document.addEventListener('keydown', (event) => {
             keysPressed[event.key] = true;
@@ -2650,14 +2659,22 @@
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
             YS_engine = e.clientY - FLEX_engine.top;
-            TIP_engine.x = XS_engine
-            TIP_engine.y = YS_engine
+            if(scale == 1){
+                TIP_engine.x = XS_engine*3
+                TIP_engine.y = YS_engine*3
+            }else{
+                TIP_engine.x = XS_engine
+                TIP_engine.y = YS_engine
+            }
             TIP_engine.body = TIP_engine
             if(spin1.isPointInside(TIP_engine)){
                 b.spin1()
             }
             if(spin2.isPointInside(TIP_engine)){
                 b.spin2()
+            }
+            if(scaler.isPointInside(TIP_engine)){
+                scale*=-1
             }
             if(playerID == b.board.turn || playerID == -1){
                 let i = b.check(TIP_engine)
@@ -2705,13 +2722,15 @@
     let b = new Pairs()
     let mod = 1
     let restart = new Rectangle(700, 400, 200, 50, "white")
-    let spin1 = new Rectangle(700, 600, 200, 50, "green")
-    let spin2  = new Rectangle(900, 600, 200, 50, "yellow")
+    let spin1 = new Rectangle(50, 700, 200, 50, "green")
+    let spin2  = new Rectangle(250, 700, 200, 50, "yellow")
+    let scaler  = new Rectangle(500, 700, 200, 50, "white")
+    let scale =1 
     function main() {
         // if(keysPressed['l']){
 
         canvas_context.clearRect(0, 0, canvas.height, canvas.height)  // refreshes the image
-        // }
+        scaler.draw()
         spin1.draw()
         spin2.draw()
                 canvas_context.fillStyle = "black"
@@ -2720,6 +2739,9 @@
                 canvas_context.fillStyle = "black"
                 canvas_context.font = "30px comic sans ms"
                 canvas_context.fillText("twirl", spin2.x + 20, spin2.y + 30)
+                canvas_context.fillStyle = "black"
+                canvas_context.font = "30px comic sans ms"
+                canvas_context.fillText("scale", scaler.x + 20, scaler.y + 30)
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)lovlock
         // game code goes here
         // let dats = data[ind]
